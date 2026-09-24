@@ -155,6 +155,21 @@ Docs are in progress. These cover the current design:
 Flux is early. If you run into issues or have ideas, open an issue or start a
 discussion.
 
+Git hooks come from [hk](https://hk.jdx.dev), installed once for each machine.
+Run this from inside the clone: hk reads `hk.pkl` to decide which events to
+register.
+
+```bash
+hk install --global --mise
+```
+
+That writes `pre-commit`, `commit-msg` and `post-merge` into `~/.gitconfig`. Git
+2.54 or newer reads them for every repository and every worktree; older Git
+rejects the command, and `hk install --mise` is the per-clone fallback.
+
+A later `hk install --global` in a different hk project replaces the whole set
+with that project's events. A repository with no `hk.pkl` is a silent no-op.
+
 ## License
 
 [MIT](LICENSE)
